@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IStreetDao">
+
+    <!--    配置查询所有  -->
+    <select id="findAllStreet" resultType="com.aluji.entities.Street">
+        select * from street
+    </select>
+
+    <!--  按Id查一个  -->
+    <select id="getStreetById" parameterType="Integer" resultType="com.aluji.entities.Street">
+        select * from street
+        where streetId=#{id}
+    </select>
+
+    <!--    保存用户  -->
+    <insert id="addStreet" parameterType="com.aluji.entities.Street">
+        insert  into street(streetId,streetName,streetAddress)values (#{streetId},#{streetName},#{streetAddress})
+    </insert>
+
+
+    <!--  修改用户  -->
+    <update id="updateStreet" parameterType="com.aluji.entities.Street">
+        update street set
+            streetName=#{streetName}
+            streetAddress=#{streetAddress}
+        where streetId=#{streetId}
+    </update>
+
+    <!--  删除用户  -->
+    <delete id="deleteStreet" parameterType="com.aluji.entities.Street">
+        delete street
+        where streetId=#{streetId}
+    </delete>
+</mapper>

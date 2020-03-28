@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IBrowseRecordDao">
+
+    <!--    配置查询所有  -->
+    <insert id="insertstreetBrowseRecord" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+            insert into streetbrowse(userId,streetId,time)
+            values(#{userid},#{streetid},#{time})
+    </insert>
+
+    <insert id="insertstoreBrowseRecord" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+            insert into storebrowse(userId,storeId,time)
+            values(#{userid},#{storeid},#{time})
+    </insert>
+
+    <select id="getAllstoreBrowseRecordBystreetId" parameterType="Integer" resultType="com.aluji.entities.StoreBrowse">
+        select userId,store.storeId,time from store,storebrowse
+        where store.storeId=storebrowse.storeid
+        and store.streetId=#{streetid}
+    </select>
+
+    <select id="getAllStoreBrowse" resultType="com.aluji.entities.StoreBrowse">
+        select userId,storeId,time from storebrowse
+    </select>
+
+</mapper>

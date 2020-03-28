@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IStreetAdminDao">
+
+    <!--    配置查询所有  -->
+    <select id="isStreetAdmin" parameterType="Integer" resultType="boolean">
+          <![CDATA[ select count(*) from streetadmin where streetAdminId = #{adminid}]]>
+    </select>
+
+
+    <select id="getStreetAdminByAdminId" parameterType="Integer" resultType="com.aluji.entities.StreetAdmin">
+        select * from streetadmin
+        where streetAdminId=#{adminid}
+    </select>
+
+</mapper>

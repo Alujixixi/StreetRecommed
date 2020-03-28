@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>登陆</title>
+		<!-- Bootstrap core CSS -->
+		<style type="text/css">
+			body {
+				flex-wrap: wrap;
+			}
+			.adminBTN {
+				margin-bottom: 20px;
+			}
+			.visitorBTN {
+				margin-left: 391px !important;
+				margin-right: 391px !important;
+				/*width:300px !important;*/
+				padding-left:15px !important;
+				padding-right:15px !important;
+			}
+		</style>
+		<link href="/asserts/css/bootstrap.min.css"  rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="/asserts/css/signin.css" rel="stylesheet">
+	</head>
+
+	<body class="text-center" background="/winter-scene.png">
+
+<!--			form-signin-->
+<div class="container" >
+		<form class="form-signin"  action="dashboard.html" 	th:action="@{/user/login}" method="post">
+			<img class="mb-4" src="/favicon.ico" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<p style="color : red" th:text="${loginmsg}" th:if="${not #strings.isEmpty(loginmsg)}"></p>
+			<label class="sr-only" >Username</label>
+			<input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+			<label class="sr-only">Password</label>
+			<input type="password" name="password" class="form-control" placeholder="Password" required="">
+<!--			<div class="checkbox mb-3">-->
+<!--				<label>-->
+<!--          			<input type="checkbox" value="remember-me"> Remember me-->
+<!--        		</label>-->
+<!--			</div>-->
+			<div>
+				<a href="/toregister">注册</a>
+			</div>
+			<div class="adminBTN">
+				<a href="/toadminlogin">管理员登录</a>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			<br>
+
+		</form>
+</div>
+<div class="container" >
+		<form class="  visitorBTN" th:action="@{/visitor/login}" method="post">
+			<button class="btn btn-lg btn-primary btn-block" type="submit">游客浏览</button>
+		</form>
+</div>
+<!--		-->
+
+	</body>
+
+</html>

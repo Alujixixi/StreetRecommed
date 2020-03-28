@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IItemDao">
+
+    <!--  按StreetId查这条街上所有  -->
+    <select id="getItemsBystoretId" parameterType="Integer" resultType="com.aluji.entities.Item">
+        select * from item
+        where storeId=#{storeid}
+    </select>
+
+    <select id="getStoresBystoreName" parameterType="String" resultType="com.aluji.entities.Item">
+        select * from item,store
+        where item.storeId = store.storeId
+        and store.storeName = #{storename}
+    </select>
+
+
+</mapper>

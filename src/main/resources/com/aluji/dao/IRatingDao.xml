@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IRatingDao">
+
+    <!--  按StreetId查这条街上所有  -->
+    <insert id="updateStoreClicks" parameterType="com.aluji.entities.StoreClicks">
+        insert into storeclick(userId,storeId,clicks) values
+        <foreach collection="list" item="storeClick" index="index" separator=",">
+            (#{storeClick.userId},#{storeClick.storeId},#{storeClick.clicks})
+        </foreach>
+        ON DUPLICATE KEY UPDATE clicks=VALUES(clicks)
+    </insert>
+
+    <insert id="updateStoreRating" parameterType="com.aluji.entities.Rating">
+        insert into storerating(userId,storeId,rating) values
+        <foreach collection="list" item="ratings" index="index" separator=",">
+            (#{ratings.userId},#{ratings.storeId},#{ratings.rating})
+        </foreach>
+        on duplicate key update rating=values(rating)
+    </insert>
+
+    <select id="getAllStoreClicks" resultType="com.aluji.entities.StoreClicks">
+        select * from storeclick
+        order by userId
+    </select>
+
+    <select id="getUserList" resultType="Integer">
+        select distinct userId from storeclick
+        order by userId
+    </select>
+
+    <select id="getStoreList" resultType="Integer">
+        select distinct storeId from storeclick
+        order by storeId
+    </select>
+
+    <select id="getStoreClicksByUserId" parameterType="Integer" resultType="com.aluji.entities.StoreClicks">
+        select * from storeclick
+        where userId = #{userId}
+        order by storeId
+    </select>
+
+    <select id="getStoreNum" resultType="Integer">
+        select count(*) from store
+    </select>
+    
+    <resultMap id="recommendListMap" type="com.aluji.entities.RecommendList">
+        <id property="userId" column="userId"></id>
+        <collection property="storeIds" ofType="Integer">
+        </collection>
+    </resultMap>
+
+
+    <select id="getStore1" resultType="Integer" parameterType="Integer">
+        select store1 from store_recommend
+        where userid=#{userId}
+    </select>
+    <select id="getStore2" resultType="Integer" parameterType="Integer">
+        select store2 from store_recommend
+        where userid=#{userId}
+    </select>
+
+    <select id="getStore3" resultType="Integer" parameterType="Integer">
+        select store3 from store_recommend
+        where userid=#{userId}
+    </select>
+
+    <select id="getStore4" resultType="Integer" parameterType="Integer">
+        select store4 from store_recommend
+        where userid=#{userId}
+    </select>
+
+    <select id="getStore5" resultType="Integer" parameterType="Integer">
+        select store5 from store_recommend
+        where userid=#{userId}
+    </select>
+
+    <select id="getStore6" resultType="Integer" parameterType="Integer">
+        select store6 from store_recommend
+        where userid=#{userId}
+    </select>
+
+    <select id="getStore7" resultType="Integer" parameterType="Integer">
+        select store7 from store_recommend
+        where userid=#{userId}
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IStoreAdminDao">
+
+    <!--    配置查询所有  -->
+    <select id="isStoreAdmin" parameterType="Integer" resultType="boolean">
+          <![CDATA[ select count(*) from storeadmin where storeAdminId = #{adminid}]]>
+    </select>
+
+
+    <select id="getStoreAdminByAdminId" parameterType="Integer" resultType="com.aluji.entities.StoreAdmin">
+        select * from storeadmin
+        where storeAdminId=#{adminid}
+    </select>
+
+</mapper>

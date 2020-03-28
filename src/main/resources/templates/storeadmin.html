@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>商铺管理</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" rel="stylesheet">
+    <style type="text/css">
+
+        #main {
+            /*margin-top: 20px;*/
+        }
+        .container-fluid {
+            width: 75% !important;
+        }
+        #main>li {
+            margin:10px;
+            margin-left: 10px;
+            list-style-type:none;
+            width:20%;
+            /*border: 1px solid #ccc;*/
+            /*background-color: rgb(241,241,241);*/
+        }
+        #main .sidebar {
+            position: relative; !important;
+        }
+        th {
+            line-height: 40px;
+        }
+        td {
+            line-height: 40px;
+        }
+        a {
+            color: black;
+        }
+        a:hover {
+            text-decoration:none;
+            font-weight: 700;
+        }
+        .address {
+            color: grey;
+            font-size: 12px;
+        }
+        .streetName {
+            font-size: 16px;
+        }
+        .streetImg >a>img{
+            background-color: rgb(251,251,251);
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a style="color:white" class="navbar-brand col-sm-3 col-md-2 mr-0" th:text="${currentstoreadmin.getStoreId()}"></a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container-fluid">
+
+
+        <table class="table table-bordered table-striped table-sm">
+
+            <tr >
+                <th>商品</th>
+                <th>价格</th>
+                <th>类型</th>
+                <th>描述</th>
+                <th width="20%">操作</th>
+            </tr>
+            <tr th:each="currentitem:${currentitems}">
+                <td th:text="${currentitem.getItemName()}"></td>
+                <td th:text="${currentitem.getItemPrice()}"></td>
+                <td th:text="${currentitem.getItemType()}"></td>
+                <td th:text="${currentitem.getItemDiscribe()}"></td>
+<!--                <td th:text="${currentstore.getStoreAddress()}">华东理工大学</td>-->
+                <td><button class="btn-sm btn-primary">修改</button>
+                    <button class="btn-sm btn-danger">删除</button>
+                </td>
+            </tr>
+
+        </table>
+        <button class="btn-sm btn-success">添加</button>
+</div>
+</body>
+
+</html>

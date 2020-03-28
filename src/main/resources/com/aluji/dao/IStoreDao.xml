@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IStoreDao">
+
+    <!--    配置查询所有  -->
+    <select id="getAllStore" resultType="com.aluji.entities.Store">
+        select * from store
+    </select>
+
+    <!--  按StreetId查这条街上所有  -->
+    <select id="getStoresBystreetId" parameterType="Integer" resultType="com.aluji.entities.Store">
+        select * from store
+        where streetId=#{id}
+    </select>
+
+    <!--  按Id查一个  -->
+    <select id="getStoreById" parameterType="Integer" resultType="com.aluji.entities.Store">
+        select * from store
+        where storeId=#{id}
+    </select>
+
+    <!--    插入商铺  -->
+    <insert id="addStore" parameterType="com.aluji.entities.Store" useGeneratedKeys="true" keyProperty="id">
+        insert  into store(storeName,storeAddress,storeType,streetId)values (#{storeName},#{storeAddress},#{storeType},#{streetId})
+    </insert>
+
+
+    <!--  修改用户  -->
+    <update id="updateStore" parameterType="com.aluji.entities.Store">
+        update store set
+            storeName=#{storeName},
+            storeAddress=#{storeAddress},
+            storeType=#{storeType}
+        where storeId=#{storeId}
+    </update>
+
+    <!--  删除用户  -->
+    <delete id="deleteStore" parameterType="Integer">
+        delete from store
+        where storeId=#{storeId}
+    </delete>
+
+    <select id="getAllStoreId" resultType="Integer">
+        select storeId from store
+    </select>
+</mapper>

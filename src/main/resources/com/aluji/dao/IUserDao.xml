@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aluji.dao.IUserDao">
+
+    <!--    配置查询所有  -->
+    <select id="getAllUser" resultType="com.aluji.entities.User">
+        select * from user
+    </select>
+
+    <!--  按Id查一个  -->
+    <select id="getUserById" parameterType="Integer" resultType="com.aluji.entities.User">
+        select * from user
+        where userId=#{id}
+    </select>
+
+    <!--  按用户名查找  -->
+    <select id="getUserByName" parameterType="String" resultType="com.aluji.entities.User">
+        select * from user
+        where userName=#{username}
+    </select>
+
+    <!--    保存用户  -->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.aluji.entities.User">
+            insert  into user(userName,userPassword,userTel)
+            values (#{userName},#{userPassword},#{userTel});
+    </insert>
+
+
+    <!--  修改用户  -->
+    <update id="updateUser" parameterType="com.aluji.entities.User">
+
+    </update>
+
+    <!--  删除用户  -->
+    <delete id="deleteUser" parameterType="com.aluji.entities.User">
+
+    </delete>
+
+    <select id="getAllUserId" resultType="Integer">
+        select userId from user
+    </select>
+</mapper>
